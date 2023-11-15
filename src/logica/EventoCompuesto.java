@@ -22,3 +22,5 @@ public class EventoCompuesto extends Evento{
 		return this.subeventos;
 	}
 }
+
+
