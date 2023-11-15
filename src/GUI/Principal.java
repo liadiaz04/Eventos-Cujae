@@ -28,6 +28,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 
+import javax.swing.JMenuItem;
+
 public class Principal extends JFrame {
 
 	private JPanel contentPane;
@@ -44,6 +46,20 @@ public class Principal extends JFrame {
 	private JLabel lblSesionMarco;
 	private JLabel lblReportes;
 	private JLabel lblReportesMarco;
+	private JMenuBar menuBar;
+	private JMenu mnSesion;
+	private JMenu mnNewMenu_1;
+	private JMenuItem mnIUser;
+	private JMenuItem mntmNewMenuItem_1;
+	private JMenuItem mntmCerrarSesin;
+	private JMenu mnNewMenu;
+	private JMenuItem mntmAadirEvento;
+	private JMenuItem mntmNewMenuItem;
+	private JMenu mnEliminar;
+	private JMenuItem mntmUsuario;
+	private JMenuItem mntmEvento;
+	private JMenu mnReportes;
+	private JMenuItem mntmReporte;
 
 	/**
 	 * Launch the application.
@@ -69,7 +85,7 @@ public class Principal extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Principal.class.getResource("/images/logoLogin.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
-		setUndecorated(true);
+		//setUndecorated(true);
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setBounds(100, 100, 1930, 1000);
 		contentPane = new JPanel(){
@@ -83,11 +99,12 @@ public class Principal extends JFrame {
 		contentPane.setLayout(null);
 		contentPane.add(getPanel());
 		contentPane.add(getLblNewLabel_1());
+		contentPane.add(getMenuBar_2());
 	}
 	private JPanel getPanel() {
 		if (panel == null) {
 			panel = new JPanel();
-			panel.setBounds(0, 0, 1923, 80);
+			panel.setBounds(0, 94, 1923, 80);
 			panel.setBackground(Colores.getAzulbarra());
 			panel.setLayout(null);
 			panel.add(getLblNewLabel());
@@ -168,6 +185,13 @@ public class Principal extends JFrame {
 					lblEventos.setForeground(Colores.getBlancuzo());
 					lblEventosMarco.setVisible(true);
 					clicked=true;
+					try {
+						Eventos dialog = new Eventos(Principal.this);
+						dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+						dialog.setVisible(true);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
 				}
 			});
 			lblEventos.setFont(new Font("Tahoma", Font.PLAIN, 23));
@@ -199,13 +223,7 @@ public class Principal extends JFrame {
 					lblSesion.setForeground(Colores.getBlancuzo());
 					lblSesionMarco.setVisible(true);
 					clicked=true;
-					try {
-						Sesion dialog = new Sesion(Principal.this);
-						dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-						dialog.setVisible(true);
-					} catch (Exception e1) {
-						e1.printStackTrace();
-					}
+					
 				}
 			});
 			lblSesion.setIcon(new ImageIcon(Principal.class.getResource("/images/Contacts.png")));
@@ -237,6 +255,13 @@ public class Principal extends JFrame {
 					lblAdministracin.setForeground(Colores.getBlancuzo());
 					lblAdminMarco.setVisible(true);
 					clicked=true;
+					try {
+						Administracion dialog = new Administracion(Principal.this);
+						dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+						dialog.setVisible(true);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
 				}
 			});
 			lblAdministracin.setIcon(new ImageIcon(Principal.class.getResource("/images/Opened Folder.png")));
@@ -320,5 +345,141 @@ public class Principal extends JFrame {
 			lblReportesMarco.setIcon(img);
 		}
 		return lblReportesMarco;
+	}
+	private JMenuBar getMenuBar_2() {
+		if (menuBar == null) {
+			menuBar = new JMenuBar();
+			menuBar.setBorderPainted(false);
+			menuBar.setBounds(0, 0, 1923, 48);
+			menuBar.add(getMnSesion());
+			menuBar.add(getMnNewMenu_1());
+			menuBar.setBackground(Colores.getAzulbarra());
+			menuBar.add(getMnNewMenu());
+			menuBar.add(getMnReportes());
+		}
+		return menuBar;
+	}
+	public JMenu getMnSesion() {
+		if (mnSesion == null) {
+			mnSesion = new JMenu("Sesi\u00F3n");
+			mnSesion.setIcon(new ImageIcon(Principal.class.getResource("/images/Contacts.png")));
+			mnSesion.setFont(new Font("Tahoma", Font.PLAIN, 23));
+			mnSesion.add(getMnIUser());
+			mnSesion.setForeground(Colores.getVerde());
+			mnSesion.add(getMntmCerrarSesin());
+			
+		}
+		return mnSesion;
+	}
+	private JMenu getMnNewMenu_1() {
+		if (mnNewMenu_1 == null) {
+			mnNewMenu_1 = new JMenu("Eventos");
+			mnNewMenu_1.setIcon(new ImageIcon(Principal.class.getResource("/images/News.png")));
+			mnNewMenu_1.setFont(new Font("Tahoma", Font.PLAIN, 23));
+			mnNewMenu_1.add(getMntmNewMenuItem_1());
+			mnNewMenu_1.setForeground(Colores.getVerde());
+		}
+		return mnNewMenu_1;
+	}
+	private JMenuItem getMnIUser() {
+		if (mnIUser == null) {
+			mnIUser = new JMenuItem("Usuario");
+			mnIUser.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					try {
+						mnSesion.setIcon(new ImageIcon(Principal.class.getResource("/images/Contactsblanco.png")));
+						mnSesion.setForeground(Colores.getBlancuzo());
+						Sesion dialog = new Sesion(Principal.this);
+						dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+						dialog.setVisible(true);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+				}
+			});
+			mnIUser.setIcon(new ImageIcon(Principal.class.getResource("/images/ContactsI.png")));
+			mnIUser.setFont(new Font("Tahoma", Font.PLAIN, 21));
+			mnIUser.setForeground(Colores.getVerde());
+			mnIUser.setBackground(Colores.getAzulbarra());
+		}
+		return mnIUser;
+	}
+	private JMenuItem getMntmNewMenuItem_1() {
+		if (mntmNewMenuItem_1 == null) {
+			mntmNewMenuItem_1 = new JMenuItem("Ver Eventos");
+			mntmNewMenuItem_1.setFont(new Font("Tahoma", Font.PLAIN, 21));
+			mntmNewMenuItem_1.setBackground(Colores.getAzulbarra());
+			mntmNewMenuItem_1.setForeground(Colores.getVerde());
+		}
+		return mntmNewMenuItem_1;
+	}
+	private JMenuItem getMntmCerrarSesin() {
+		if (mntmCerrarSesin == null) {
+			mntmCerrarSesin = new JMenuItem("Cerrar Sesi\u00F3n");
+			mntmCerrarSesin.setForeground(new Color(0, 165, 83));
+			mntmCerrarSesin.setFont(new Font("Tahoma", Font.PLAIN, 21));
+			mntmCerrarSesin.setBackground(new Color(6, 43, 63));
+		}
+		return mntmCerrarSesin;
+	}
+	private JMenu getMnNewMenu() {
+		if (mnNewMenu == null) {
+			mnNewMenu = new JMenu("Administraci\u00F3n");
+			mnNewMenu.setIcon(new ImageIcon(Principal.class.getResource("/images/Opened Folder.png")));
+			mnNewMenu.setFont(new Font("Tahoma", Font.PLAIN, 23));
+			mnNewMenu.setForeground(Colores.getVerde());
+			mnNewMenu.add(getMntmAadirEvento());
+			mnNewMenu.add(getMntmNewMenuItem());
+			mnNewMenu.add(getMnEliminar());
+		}
+		return mnNewMenu;
+	}
+	private JMenuItem getMntmAadirEvento() {
+		if (mntmAadirEvento == null) {
+			mntmAadirEvento = new JMenuItem("A\u00F1adir Evento");
+		}
+		return mntmAadirEvento;
+	}
+	private JMenuItem getMntmNewMenuItem() {
+		if (mntmNewMenuItem == null) {
+			mntmNewMenuItem = new JMenuItem("A\u00F1adir Usuario");
+		}
+		return mntmNewMenuItem;
+	}
+	private JMenu getMnEliminar() {
+		if (mnEliminar == null) {
+			mnEliminar = new JMenu("Eliminar");
+			mnEliminar.add(getMntmUsuario());
+			mnEliminar.add(getMntmEvento());
+		}
+		return mnEliminar;
+	}
+	private JMenuItem getMntmUsuario() {
+		if (mntmUsuario == null) {
+			mntmUsuario = new JMenuItem("Usuario");
+		}
+		return mntmUsuario;
+	}
+	private JMenuItem getMntmEvento() {
+		if (mntmEvento == null) {
+			mntmEvento = new JMenuItem("Evento");
+		}
+		return mntmEvento;
+	}
+	private JMenu getMnReportes() {
+		if (mnReportes == null) {
+			mnReportes = new JMenu("Reportes");
+			mnReportes.setIcon(new ImageIcon(Principal.class.getResource("/images/Menu.png")));
+			mnReportes.setFont(new Font("Tahoma", Font.PLAIN, 23));
+			mnReportes.setForeground(Colores.getVerde());
+			mnReportes.add(getMntmReporte());
+		}
+		return mnReportes;
+	}
+	private JMenuItem getMntmReporte() {
+		if (mntmReporte == null) {
+			mntmReporte = new JMenuItem("Reporte 1");
+		}
+		return mntmReporte;
 	}
 }

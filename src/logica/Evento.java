@@ -5,18 +5,16 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public abstract class Evento {
-	protected String nombre;
-	protected String tipo;
-	protected String organizador;
-	protected Date fechaInicial;
-	protected Date fechaFinal;
-	protected Time horaInicial;
-	protected Time horaFinal;
-	protected Lugar area;
-	protected ArrayList<Opinion> opiniones;
+	private String nombre;
+	private String tipo;
+	private String organizador;
+	private Date fechaInicial;
+	private Date fechaFinal;
+	private Time horaInicial;
+	private Time horaFinal;
+	private ArrayList<Opinion> opiniones;
 	
-	public Evento(String nombre, String tipo, String organizador, Date fechaInicial, Date fechaFinal,
-			Time horaInicial, Time horaFinal, Lugar area){
+	public Evento(String nombre, String tipo, String organizador, Date fechaInicial, Date fechaFinal, Time horaInicial, Time horaFinal){
 		this.setNombre(nombre);
 		this.setTipo(tipo);
 		this.setOrganizador(organizador);
@@ -24,17 +22,12 @@ public abstract class Evento {
 		this.setFechaFinal(fechaFinal);
 		this.setHoraInicial(horaInicial);
 		this.setHoraFinal(horaFinal);
-		this.setArea(area);
 		opiniones = new ArrayList<Opinion>();
 		}
 	
-	public void addOpinion(int cantEstrellas, String texto){
-		Opinion o = new Opinion(cantEstrellas, texto);
+	public void addOpinion(int estrellas, String texto){
+		Opinion o = new Opinion(estrellas, texto);
 		opiniones.add(o);
-	}
-	
-	public void elimOpinion(Opinion o){
-		opiniones.remove(o);
 	}
 	
 	public ArrayList<Opinion> getOpiniones() {
@@ -95,13 +88,5 @@ public abstract class Evento {
 
 	public void setHoraFinal(Time horaFinal) {
 		this.horaFinal = horaFinal;
-	}
-
-	public Lugar getArea() {
-		return area;
-	}
-
-	public void setArea(Lugar area) {
-		this.area = area;
 	}
 }

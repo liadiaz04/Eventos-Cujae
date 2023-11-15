@@ -5,26 +5,18 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class EventoSConParticipantes extends EventoSimple{
-	private int cantidad;
-	private ArrayList<Participante> participantes;
+	private ArrayList<User> participantes;
 	
-	public EventoSConParticipantes(String nombre, String tipo, String organizador, Date fechaInicial,
-			Date fechaFinal, Time horaInicial, Time horaFinal, Lugar area){
-		super(nombre, tipo, organizador, fechaInicial, fechaFinal, horaInicial,
-				horaFinal, area);
-		participantes= new ArrayList<Participante>();
-		this.setCantidad(cantidad);
+	public EventoSConParticipantes(String nombre, String tipo, String organizador, Date fechaInicial, Date fechaFinal, Time horaInicial, Time horaFinal){
+		super(nombre, tipo, organizador, fechaInicial, fechaFinal, horaInicial, horaFinal);
+		participantes= new ArrayList<User>();
 	}
 	
-	private void setCantidad(int cantidad) {
-		this.cantidad=cantidad;
-	}
-
-	public void addParticipante(Participante p){
+	public void addParticipante(User p){
 		participantes.add(p);
 	}
 	
-	public ArrayList<Participante> getParticipantes(){
+	public ArrayList<User> getParticipantes(){
 		return this.participantes;
 	}
 }

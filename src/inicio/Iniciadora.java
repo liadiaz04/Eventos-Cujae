@@ -12,7 +12,6 @@ public class Iniciadora {
 				try {
 					Primera frame = new Primera();
 					frame.setVisible(true);
-					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
