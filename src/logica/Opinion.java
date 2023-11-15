@@ -1,13 +1,17 @@
 package logica;
 
+import java.util.Date;
+
 public class Opinion {
 
 	private int cantEstrellas;
 	private String texto;
+	private Date fecha;
 	
 	public Opinion(int cantEstrellas,String texto){
 		this.setCantEstrellas(cantEstrellas);
 		this.setTexto(texto);
+		fecha = new Date();
 	}
 	
 	public int getCantEstrellas() {
@@ -21,5 +25,9 @@ public class Opinion {
 	}
 	public void setTexto(String texto) {
 		this.texto = texto;
+	}
+
+	public Date getFecha() {
+		return fecha;
 	}
 }

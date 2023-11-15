@@ -3,6 +3,8 @@ package logica;
 import java.util.ArrayList;
 import java.util.Date;
 
+import utilidades.EventoOpinionesRango;
+
 public class Universidad {
 	private Universidad cujae;
 	private ArrayList<User> usuarios;
@@ -112,8 +114,46 @@ public class Universidad {
 	
 	//Reporte 4
 	
-	public void eventoMasValoradoEnRango(Date limI, Date limS){
+	public Evento eventoMasValoradoEnRango(Date limI, Date limS){
+
+		ArrayList<EventoOpinionesRango> arreglo = new ArrayList<EventoOpinionesRango>();
 		
+		for(Evento e : eventos)
+		{
+			if(e.getFechaFinal().compareTo(limI)==1 && e.getFechaFinal().compareTo(limS)==-1)
+			{
+				EventoOpinionesRango eor = new EventoOpinionesRango(e);
+				for(Opinion o : e.getOpiniones())
+				{
+					if(o.getFecha().compareTo(limI)==1 && o.getFecha().compareTo(limS)==-1)
+					{
+						eor.incrementoFrecuencia();
+					}
+				}
+				arreglo.add(eor);
+			}
+		}
+		
+		Evento e1 = buscarEventoMasOpinado(arreglo);
+		
+		return e1;
+	}
+	
+	public Evento buscarEventoMasOpinado(ArrayList<EventoOpinionesRango> arreglo){
+		
+		Evento emayor=null;
+		int mayor=0;
+		
+		for(EventoOpinionesRango e : arreglo)
+		{
+			if(e.getFrecuencia()>mayor)
+			{
+				mayor=e.getFrecuencia();
+				emayor=e.getE();
+			}
+		}
+		
+		return emayor;
 	}
 
 	public ArrayList<User> getUsuarios() {
