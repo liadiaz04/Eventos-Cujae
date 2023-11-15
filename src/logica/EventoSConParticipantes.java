@@ -5,19 +5,20 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class EventoSConParticipantes extends EventoSimple{
-	private int cantidad;
+	private int limite;
 	private ArrayList<Participante> participantes;
-	
+
 	public EventoSConParticipantes(String nombre, String tipo, String organizador, Date fechaInicial,
-			Date fechaFinal, Time horaInicial, Time horaFinal, Lugar area){
+			Date fechaFinal, Time horaInicial, Time horaFinal, Lugar area, int limite){
 		super(nombre, tipo, organizador, fechaInicial, fechaFinal, horaInicial,
 				horaFinal, area);
 		participantes= new ArrayList<Participante>();
-		this.setCantidad(cantidad);
+		this.setLimite(limite);
 	}
 	
-	private void setCantidad(int cantidad) {
-		this.cantidad=cantidad;
+	
+	private void setLimite(int limite) {
+		this.limite=limite;
 	}
 
 	public void addParticipante(Participante p){
@@ -27,4 +28,12 @@ public class EventoSConParticipantes extends EventoSimple{
 	public ArrayList<Participante> getParticipantes(){
 		return this.participantes;
 	}
+
+	public int getLimite() {
+		return limite;
+	}
+	public int getCantidadParticipantes(){
+		return participantes.size();
+	}
+
 }

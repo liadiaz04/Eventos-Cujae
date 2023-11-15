@@ -42,6 +42,8 @@ public class Universidad {
 		participantes.add(e);
 	}
 
+	//Reporte 1
+
 	public Participante buscarParticipante(String username) {
 		boolean encontrado = false;
 		Participante p = null;
@@ -53,6 +55,23 @@ public class Universidad {
 		}
 		return p;
 	}
+
+	public ArrayList<EventoSConParticipantes>eventosDelParticipante(Participante p){
+		ArrayList<EventoSConParticipantes>eventoAux = new ArrayList<EventoSConParticipantes>();
+		
+
+		for (Evento evento : eventos) {
+			if(evento instanceof EventoSConParticipantes){
+				if(((EventoSConParticipantes)evento).getParticipantes().contains(p)){
+			      eventoAux.add((EventoSConParticipantes)evento);  
+				}
+			}
+		}
+		return eventoAux;	
+		
+	}
+
+   //eventosDelParticipante(buscarParticipante("lia"));
 
 	
 
