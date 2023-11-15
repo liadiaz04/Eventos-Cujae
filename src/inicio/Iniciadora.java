@@ -12,7 +12,7 @@ public class Iniciadora {
 				try {
 					Primera frame = new Primera();
 					frame.setVisible(true);
-					Sys
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
