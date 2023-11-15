@@ -7,4 +7,6 @@ public class User {
 	private String apellidos;
 	private String telefono;
 	private String correo;
+
+	
 }
