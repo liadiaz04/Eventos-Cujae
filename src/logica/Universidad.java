@@ -42,6 +42,7 @@ public class Universidad {
 		participantes.add(e);
 	}
 
+	/////////////////////////////////////////////////////////////////////////////////////
 	//Reporte 1
 
 	public Participante buscarParticipante(String username) {
@@ -55,6 +56,8 @@ public class Universidad {
 		}
 		return p;
 	}
+
+	//Devuelve eventos en los que ha participado el usuario 
 
 	public ArrayList<EventoSConParticipantes>eventosDelParticipante(Participante p){
 		ArrayList<EventoSConParticipantes>eventoAux = new ArrayList<EventoSConParticipantes>();
@@ -72,6 +75,13 @@ public class Universidad {
 	}
 
    //eventosDelParticipante(buscarParticipante("lia"));
+  
+   ////////////////////////////////////////////////////////////////////////////////////////
+
+
+   //Reporte 4
+
+   
 
 	
 
