@@ -53,13 +53,22 @@ public class Principal extends JFrame {
 	private JMenuItem mntmNewMenuItem_1;
 	private JMenuItem mntmCerrarSesin;
 	private JMenu mnNewMenu;
-	private JMenuItem mntmAadirEvento;
-	private JMenuItem mntmNewMenuItem;
 	private JMenu mnEliminar;
 	private JMenuItem mntmUsuario;
 	private JMenuItem mntmEvento;
 	private JMenu mnReportes;
 	private JMenuItem mntmReporte;
+	private JMenu mnAadirEvento;
+	private JMenuItem mntmEventoSimple;
+	private JMenuItem mntmEventoSimpleCon;
+	private JMenuItem mntmEventoCompuesto;
+	private JMenu mnAadirUsuario;
+	private JMenuItem mntmEstudiante;
+	private JMenuItem mntmProfesor;
+	private JMenuItem mntmUsuariosQue;
+	private JMenu mnReportesPorRango;
+	private JMenuItem mntmLugaresCon;
+	private JMenuItem mntmEventoMasValorado;
 
 	/**
 	 * Launch the application.
@@ -428,23 +437,11 @@ public class Principal extends JFrame {
 			mnNewMenu.setIcon(new ImageIcon(Principal.class.getResource("/images/Opened Folder.png")));
 			mnNewMenu.setFont(new Font("Tahoma", Font.PLAIN, 23));
 			mnNewMenu.setForeground(Colores.getVerde());
-			mnNewMenu.add(getMntmAadirEvento());
-			mnNewMenu.add(getMntmNewMenuItem());
+			mnNewMenu.add(getMnAadirEvento());
+			mnNewMenu.add(getMnAadirUsuario());
 			mnNewMenu.add(getMnEliminar());
 		}
 		return mnNewMenu;
-	}
-	private JMenuItem getMntmAadirEvento() {
-		if (mntmAadirEvento == null) {
-			mntmAadirEvento = new JMenuItem("A\u00F1adir Evento");
-		}
-		return mntmAadirEvento;
-	}
-	private JMenuItem getMntmNewMenuItem() {
-		if (mntmNewMenuItem == null) {
-			mntmNewMenuItem = new JMenuItem("A\u00F1adir Usuario");
-		}
-		return mntmNewMenuItem;
 	}
 	private JMenu getMnEliminar() {
 		if (mnEliminar == null) {
@@ -473,13 +470,95 @@ public class Principal extends JFrame {
 			mnReportes.setFont(new Font("Tahoma", Font.PLAIN, 23));
 			mnReportes.setForeground(Colores.getVerde());
 			mnReportes.add(getMntmReporte());
+			mnReportes.add(getMntmUsuariosQue());
+			mnReportes.add(getMnReportesPorRango());
 		}
 		return mnReportes;
 	}
 	private JMenuItem getMntmReporte() {
 		if (mntmReporte == null) {
-			mntmReporte = new JMenuItem("Reporte 1");
+			mntmReporte = new JMenuItem("Eventos de un usuario");
+			mntmReporte.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		}
 		return mntmReporte;
+	}
+	private JMenu getMnAadirEvento() {
+		if (mnAadirEvento == null) {
+			mnAadirEvento = new JMenu("A\u00F1adir Evento");
+			mnAadirEvento.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			mnAadirEvento.add(getMntmEventoSimple());
+			mnAadirEvento.add(getMntmEventoSimpleCon());
+			mnAadirEvento.add(getMntmEventoCompuesto());
+		}
+		return mnAadirEvento;
+	}
+	private JMenuItem getMntmEventoSimple() {
+		if (mntmEventoSimple == null) {
+			mntmEventoSimple = new JMenuItem("Evento Simple");
+		}
+		return mntmEventoSimple;
+	}
+	private JMenuItem getMntmEventoSimpleCon() {
+		if (mntmEventoSimpleCon == null) {
+			mntmEventoSimpleCon = new JMenuItem("Evento Simple con Participaci\u00F3n");
+		}
+		return mntmEventoSimpleCon;
+	}
+	private JMenuItem getMntmEventoCompuesto() {
+		if (mntmEventoCompuesto == null) {
+			mntmEventoCompuesto = new JMenuItem("Evento Compuesto");
+		}
+		return mntmEventoCompuesto;
+	}
+	private JMenu getMnAadirUsuario() {
+		if (mnAadirUsuario == null) {
+			mnAadirUsuario = new JMenu("A\u00F1adir Usuario");
+			mnAadirUsuario.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			mnAadirUsuario.add(getMntmEstudiante());
+			mnAadirUsuario.add(getMntmProfesor());
+		}
+		return mnAadirUsuario;
+	}
+	private JMenuItem getMntmEstudiante() {
+		if (mntmEstudiante == null) {
+			mntmEstudiante = new JMenuItem("Estudiante");
+		}
+		return mntmEstudiante;
+	}
+	private JMenuItem getMntmProfesor() {
+		if (mntmProfesor == null) {
+			mntmProfesor = new JMenuItem("Trabajador");
+		}
+		return mntmProfesor;
+	}
+	private JMenuItem getMntmUsuariosQue() {
+		if (mntmUsuariosQue == null) {
+			mntmUsuariosQue = new JMenuItem("10 usuarios que m\u00E1s han participado en un tipo de evento");
+			mntmUsuariosQue.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return mntmUsuariosQue;
+	}
+	private JMenu getMnReportesPorRango() {
+		if (mnReportesPorRango == null) {
+			mnReportesPorRango = new JMenu("Reportes por rango de tiempo");
+			mnReportesPorRango.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			mnReportesPorRango.add(getMntmLugaresCon());
+			mnReportesPorRango.add(getMntmEventoMasValorado());
+		}
+		return mnReportesPorRango;
+	}
+	private JMenuItem getMntmLugaresCon() {
+		if (mntmLugaresCon == null) {
+			mntmLugaresCon = new JMenuItem("Top 10 lugares con mas eventos realizados");
+			mntmLugaresCon.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		}
+		return mntmLugaresCon;
+	}
+	private JMenuItem getMntmEventoMasValorado() {
+		if (mntmEventoMasValorado == null) {
+			mntmEventoMasValorado = new JMenuItem("Evento mas valorado");
+			mntmEventoMasValorado.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		}
+		return mntmEventoMasValorado;
 	}
 }
