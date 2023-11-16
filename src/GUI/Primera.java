@@ -13,7 +13,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-import utilidades.ContraseñaPlaceHolder;
+import utilidades.ContrasenaPlaceHolder;
 import utilidades.PLaceHolder;
 
 import java.awt.Color;
@@ -112,7 +112,7 @@ public class Primera extends JFrame {
 	}
 	private JPasswordField getCampoContrasena() {
 		if (campoContrasena == null) {
-			campoContrasena = new ContraseñaPlaceHolder("Contraseña");
+			campoContrasena = new ContrasenaPlaceHolder("Contraseï¿½a");
 			campoContrasena.setBounds(146, 309, 209, 33);
 			campoContrasena.setFont(new Font("Tahoma", Font.BOLD, 16));
 			campoContrasena.setBackground(Colores.getAzulbarra());

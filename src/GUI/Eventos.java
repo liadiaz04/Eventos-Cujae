@@ -70,9 +70,6 @@ public class Eventos extends JDialog {
 			JButton btnNewButton = new JButton("Cerrar");
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					padre.getLblEventos().setForeground(Colores.getVerde());
-					padre.getLblEventos().setIcon(new ImageIcon(Principal.class.getResource("/images/News.png")));
-					padre.getLblEventosMarco().setVisible(false);
 					dispose();
 				}
 			});

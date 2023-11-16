@@ -25,7 +25,6 @@ public class Sesion extends JDialog {
 	private final JPanel contentPanel;
 	private Principal padre;
 	private JButton btnVolver;
-	private JButton btnCerrarSesin;
 
 	/**
 	 * Launch the application.
@@ -51,7 +50,6 @@ public class Sesion extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		contentPanel.add(getBtnVolver());
-		contentPanel.add(getBtnCerrarSesin());
 	}
 	private JButton getBtnVolver() {
 		if (btnVolver == null) {
@@ -65,21 +63,8 @@ public class Sesion extends JDialog {
 				}
 			});
 			btnVolver.setBackground(Colores.getVerde());
-			btnVolver.setBounds(154, 586, 167, 58);
+			btnVolver.setBounds(260, 585, 167, 58);
 		}
 		return btnVolver;
-	}
-	private JButton getBtnCerrarSesin() {
-		if (btnCerrarSesin == null) {
-			btnCerrarSesin = new JButton("Cerrar Sesi\u00F3n");
-			btnCerrarSesin.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-				}
-			});
-			btnCerrarSesin.setFont(new Font("Tahoma", Font.PLAIN, 21));
-			btnCerrarSesin.setBackground(Colores.getVerde());
-			btnCerrarSesin.setBounds(367, 586, 167, 58);
-		}
-		return btnCerrarSesin;
 	}
 }

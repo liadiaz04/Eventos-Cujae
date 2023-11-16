@@ -29,23 +29,13 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.JMenuItem;
+import javax.swing.JCheckBoxMenuItem;
 
 public class Principal extends JFrame {
 
 	private JPanel contentPane;
-	private JPanel panel;
-	private JLabel lblNewLabel;
-	private JLabel label;
 	private JLabel lblEventosCujae;
 	private JLabel lblNewLabel_1;
-	private JLabel lblEventos;
-	private JLabel lblSesion;
-	private JLabel lblAdministracin;
-	private JLabel lblAdminMarco;
-	private JLabel lblEventosMarco;
-	private JLabel lblSesionMarco;
-	private JLabel lblReportes;
-	private JLabel lblReportesMarco;
 	private JMenuBar menuBar;
 	private JMenu mnSesion;
 	private JMenu mnNewMenu_1;
@@ -69,6 +59,7 @@ public class Principal extends JFrame {
 	private JMenu mnReportesPorRango;
 	private JMenuItem mntmLugaresCon;
 	private JMenuItem mntmEventoMasValorado;
+	private JMenuItem mntmSalir;
 
 	/**
 	 * Launch the application.
@@ -94,7 +85,7 @@ public class Principal extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Principal.class.getResource("/images/logoLogin.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
-		//setUndecorated(true);
+		setUndecorated(true);
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setBounds(100, 100, 1930, 1000);
 		contentPane = new JPanel(){
@@ -106,59 +97,15 @@ public class Principal extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		contentPane.add(getPanel());
 		contentPane.add(getLblNewLabel_1());
 		contentPane.add(getMenuBar_2());
-	}
-	private JPanel getPanel() {
-		if (panel == null) {
-			panel = new JPanel();
-			panel.setBounds(0, 94, 1923, 80);
-			panel.setBackground(Colores.getAzulbarra());
-			panel.setLayout(null);
-			panel.add(getLblNewLabel());
-			panel.add(getLabel());
-			panel.add(getLblEventosCujae());
-			panel.add(getLblEventos());
-			panel.add(getLblSesion());
-			panel.add(getLblAdministracin());
-			panel.add(getLblAdminMarco());
-			panel.add(getLblEventosMarco());
-			panel.add(getLblSesionMarco());
-			panel.add(getLblReportes());
-			panel.add(getLblReportesMarco());
-		}
-		return panel;
-	}
-	private JLabel getLblNewLabel() {
-		if (lblNewLabel == null) {
-			lblNewLabel = new JLabel("");
-			lblNewLabel.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					System.exit(EXIT_ON_CLOSE);
-				}
-			});
-			lblNewLabel.setIcon(new ImageIcon(Principal.class.getResource("/images/Close.png")));
-			lblNewLabel.setBounds(1855, 13, 48, 48);
-		}
-		return lblNewLabel;
-	}
-	private JLabel getLabel() {
-		if (label == null) {
-			label = new JLabel("");
-			label.setBounds(1769, 3, 74, 74);
-			ImageIcon icon= new ImageIcon(getClass().getResource("/images/logoLogin.png"));
-			ImageIcon img = new ImageIcon(icon.getImage().getScaledInstance(label.getWidth(), label.getHeight(), 10));
-			label.setIcon(img);
-		}
-		return label;
+		contentPane.add(getLblEventosCujae());
 	}
 	private JLabel getLblEventosCujae() {
 		if (lblEventosCujae == null) {
 			lblEventosCujae = new JLabel("EVENTOS CUJAE");
+			lblEventosCujae.setBounds(1731, 81, 171, 48);
 			lblEventosCujae.setFont(new Font("Tahoma", Font.PLAIN, 23));
-			lblEventosCujae.setBounds(1592, 16, 171, 48);
 			lblEventosCujae.setForeground(Colores.getBlancuzo());
 		}
 		return lblEventosCujae;
@@ -172,194 +119,11 @@ public class Principal extends JFrame {
 		}
 		return lblNewLabel_1;
 	}
-	public JLabel getLblEventos() {
-		if (lblEventos == null) {
-			lblEventos = new JLabel("Eventos");
-			lblEventos.addMouseListener(new MouseAdapter() {
-				boolean clicked=false;
-				@Override
-				public void mouseEntered(MouseEvent e) {
-					if(clicked)
-						clicked=false;
-					lblEventosMarco.setVisible(true);
-				}
-				@Override
-				public void mouseExited(MouseEvent e) {
-					if(!clicked)
-						lblEventosMarco.setVisible(false);
-				}
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					lblEventos.setIcon(new ImageIcon(Principal.class.getResource("/images/Newsblanco.png")));
-					lblEventos.setForeground(Colores.getBlancuzo());
-					lblEventosMarco.setVisible(true);
-					clicked=true;
-					try {
-						Eventos dialog = new Eventos(Principal.this);
-						dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-						dialog.setVisible(true);
-					} catch (Exception e1) {
-						e1.printStackTrace();
-					}
-				}
-			});
-			lblEventos.setFont(new Font("Tahoma", Font.PLAIN, 23));
-			lblEventos.setIcon(new ImageIcon(Principal.class.getResource("/images/News.png")));
-			lblEventos.setBounds(210, 16, 138, 48);
-			lblEventos.setForeground(Colores.getVerde());
-		}
-		return lblEventos;
-	}
-	public JLabel getLblSesion() {
-		if (lblSesion == null) {
-			lblSesion = new JLabel("Sesi\u00F3n");
-			lblSesion.addMouseListener(new MouseAdapter() {
-				boolean clicked=false;
-				@Override
-				public void mouseEntered(MouseEvent e) {
-					if(clicked)
-						clicked=false;
-					lblSesionMarco.setVisible(true);
-				}
-				@Override
-				public void mouseExited(MouseEvent e) {
-					if(!clicked)
-					lblSesionMarco.setVisible(false);
-				}
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					lblSesion.setIcon(new ImageIcon(Principal.class.getResource("/images/Contactsblanco.png")));
-					lblSesion.setForeground(Colores.getBlancuzo());
-					lblSesionMarco.setVisible(true);
-					clicked=true;
-					
-				}
-			});
-			lblSesion.setIcon(new ImageIcon(Principal.class.getResource("/images/Contacts.png")));
-			lblSesion.setForeground(new Color(0, 165, 83));
-			lblSesion.setFont(new Font("Tahoma", Font.PLAIN, 23));
-			lblSesion.setBounds(25, 16, 138, 48);
-		}
-		return lblSesion;
-	}
-	public JLabel getLblAdministracin() {
-		if (lblAdministracin == null) {
-			lblAdministracin = new JLabel("Administraci\u00F3n");
-			lblAdministracin.addMouseListener(new MouseAdapter() {
-				boolean clicked=false;
-				@Override
-				public void mouseEntered(MouseEvent e) {
-					if(clicked)
-						clicked=false;
-					lblAdminMarco.setVisible(true);
-				}
-				@Override
-				public void mouseExited(MouseEvent e) {
-					if(!clicked)
-						lblAdminMarco.setVisible(false);
-				}
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					lblAdministracin.setIcon(new ImageIcon(Principal.class.getResource("/images/Opened FolderG.png")));
-					lblAdministracin.setForeground(Colores.getBlancuzo());
-					lblAdminMarco.setVisible(true);
-					clicked=true;
-					try {
-						Administracion dialog = new Administracion(Principal.this);
-						dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-						dialog.setVisible(true);
-					} catch (Exception e1) {
-						e1.printStackTrace();
-					}
-				}
-			});
-			lblAdministracin.setIcon(new ImageIcon(Principal.class.getResource("/images/Opened Folder.png")));
-			lblAdministracin.setForeground(new Color(0, 165, 83));
-			lblAdministracin.setFont(new Font("Tahoma", Font.PLAIN, 23));
-			lblAdministracin.setBounds(400, 16, 205, 48);
-		}
-		return lblAdministracin;
-	}
-	public JLabel getLblAdminMarco() {
-		if (lblAdminMarco == null) {
-			lblAdminMarco = new JLabel("");
-			lblAdminMarco.setVisible(false);
-			lblAdminMarco.setBounds(382, 0, 244, 80);
-			ImageIcon icon= new ImageIcon(getClass().getResource("/images/marcoB.png"));
-			ImageIcon img = new ImageIcon(icon.getImage().getScaledInstance(lblAdminMarco.getWidth(), lblAdminMarco.getHeight(), 10));
-			lblAdminMarco.setIcon(img);
-		}
-		return lblAdminMarco;
-	}
-	public JLabel getLblEventosMarco() {
-		if (lblEventosMarco == null) {
-			lblEventosMarco = new JLabel("");
-			lblEventosMarco.setVisible(false);
-			lblEventosMarco.setBounds(195, 0, 188, 79);
-			ImageIcon icon= new ImageIcon(getClass().getResource("/images/marcoB.png"));
-			ImageIcon img = new ImageIcon(icon.getImage().getScaledInstance(lblEventosMarco.getWidth(), lblEventosMarco.getHeight(), 10));
-			lblEventosMarco.setIcon(img);
-		}
-		return lblEventosMarco;
-	}
-	public JLabel getLblSesionMarco() {
-		if (lblSesionMarco == null) {
-			lblSesionMarco = new JLabel("");
-			lblSesionMarco.setVisible(false);
-			lblSesionMarco.setBounds(0, 0, 196, 79);
-			ImageIcon icon= new ImageIcon(getClass().getResource("/images/marcoB.png"));
-			ImageIcon img = new ImageIcon(icon.getImage().getScaledInstance(lblSesionMarco.getWidth(), lblSesionMarco.getHeight(), 10));
-			lblSesionMarco.setIcon(img);
-		}
-		return lblSesionMarco;
-	}
-	public JLabel getLblReportes() {
-		if (lblReportes == null) {
-			lblReportes = new JLabel("Reportes");
-			lblReportes.addMouseListener(new MouseAdapter() {
-				boolean clicked=false;
-				@Override
-				public void mouseEntered(MouseEvent e) {
-					if(clicked)
-						clicked=false;
-					lblReportesMarco.setVisible(true);
-				}
-				@Override
-				public void mouseExited(MouseEvent e) {
-					if(!clicked)
-						lblReportesMarco.setVisible(false);
-				}
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					lblReportes.setIcon(new ImageIcon(Principal.class.getResource("/images/Menublanco.png")));
-					lblReportes.setForeground(Colores.getBlancuzo());
-					lblReportesMarco.setVisible(true);
-					clicked=true;
-				}
-			});
-			lblReportes.setIcon(new ImageIcon(Principal.class.getResource("/images/Menu.png")));
-			lblReportes.setFont(new Font("Tahoma", Font.PLAIN, 23));
-			lblReportes.setBounds(650, 13, 157, 54);
-			lblReportes.setForeground(Colores.getVerde());
-		}
-		return lblReportes;
-	}
-	public JLabel getLblReportesMarco() {
-		if (lblReportesMarco == null) {
-			lblReportesMarco = new JLabel("");
-			lblReportesMarco.setVisible(false);
-			lblReportesMarco.setBounds(625, 0, 188, 80);
-			ImageIcon icon= new ImageIcon(getClass().getResource("/images/marcoB.png"));
-			ImageIcon img = new ImageIcon(icon.getImage().getScaledInstance(lblReportesMarco.getWidth(), lblReportesMarco.getHeight(), 10));
-			lblReportesMarco.setIcon(img);
-		}
-		return lblReportesMarco;
-	}
 	private JMenuBar getMenuBar_2() {
 		if (menuBar == null) {
 			menuBar = new JMenuBar();
 			menuBar.setBorderPainted(false);
-			menuBar.setBounds(0, 0, 1923, 48);
+			menuBar.setBounds(0, 0, 1923, 80);
 			menuBar.add(getMnSesion());
 			menuBar.add(getMnNewMenu_1());
 			menuBar.setBackground(Colores.getAzulbarra());
@@ -376,6 +140,7 @@ public class Principal extends JFrame {
 			mnSesion.add(getMnIUser());
 			mnSesion.setForeground(Colores.getVerde());
 			mnSesion.add(getMntmCerrarSesin());
+			mnSesion.add(getMntmSalir());
 			
 		}
 		return mnSesion;
@@ -407,7 +172,7 @@ public class Principal extends JFrame {
 				}
 			});
 			mnIUser.setIcon(new ImageIcon(Principal.class.getResource("/images/ContactsI.png")));
-			mnIUser.setFont(new Font("Tahoma", Font.PLAIN, 21));
+			mnIUser.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			mnIUser.setForeground(Colores.getVerde());
 			mnIUser.setBackground(Colores.getAzulbarra());
 		}
@@ -416,7 +181,7 @@ public class Principal extends JFrame {
 	private JMenuItem getMntmNewMenuItem_1() {
 		if (mntmNewMenuItem_1 == null) {
 			mntmNewMenuItem_1 = new JMenuItem("Ver Eventos");
-			mntmNewMenuItem_1.setFont(new Font("Tahoma", Font.PLAIN, 21));
+			mntmNewMenuItem_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			mntmNewMenuItem_1.setBackground(Colores.getAzulbarra());
 			mntmNewMenuItem_1.setForeground(Colores.getVerde());
 		}
@@ -426,7 +191,7 @@ public class Principal extends JFrame {
 		if (mntmCerrarSesin == null) {
 			mntmCerrarSesin = new JMenuItem("Cerrar Sesi\u00F3n");
 			mntmCerrarSesin.setForeground(new Color(0, 165, 83));
-			mntmCerrarSesin.setFont(new Font("Tahoma", Font.PLAIN, 21));
+			mntmCerrarSesin.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			mntmCerrarSesin.setBackground(new Color(6, 43, 63));
 		}
 		return mntmCerrarSesin;
@@ -446,6 +211,7 @@ public class Principal extends JFrame {
 	private JMenu getMnEliminar() {
 		if (mnEliminar == null) {
 			mnEliminar = new JMenu("Eliminar");
+			mnEliminar.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			mnEliminar.add(getMntmUsuario());
 			mnEliminar.add(getMntmEvento());
 		}
@@ -454,12 +220,14 @@ public class Principal extends JFrame {
 	private JMenuItem getMntmUsuario() {
 		if (mntmUsuario == null) {
 			mntmUsuario = new JMenuItem("Usuario");
+			mntmUsuario.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		}
 		return mntmUsuario;
 	}
 	private JMenuItem getMntmEvento() {
 		if (mntmEvento == null) {
 			mntmEvento = new JMenuItem("Evento");
+			mntmEvento.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		}
 		return mntmEvento;
 	}
@@ -495,18 +263,21 @@ public class Principal extends JFrame {
 	private JMenuItem getMntmEventoSimple() {
 		if (mntmEventoSimple == null) {
 			mntmEventoSimple = new JMenuItem("Evento Simple");
+			mntmEventoSimple.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		}
 		return mntmEventoSimple;
 	}
 	private JMenuItem getMntmEventoSimpleCon() {
 		if (mntmEventoSimpleCon == null) {
 			mntmEventoSimpleCon = new JMenuItem("Evento Simple con Participaci\u00F3n");
+			mntmEventoSimpleCon.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		}
 		return mntmEventoSimpleCon;
 	}
 	private JMenuItem getMntmEventoCompuesto() {
 		if (mntmEventoCompuesto == null) {
 			mntmEventoCompuesto = new JMenuItem("Evento Compuesto");
+			mntmEventoCompuesto.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		}
 		return mntmEventoCompuesto;
 	}
@@ -522,12 +293,14 @@ public class Principal extends JFrame {
 	private JMenuItem getMntmEstudiante() {
 		if (mntmEstudiante == null) {
 			mntmEstudiante = new JMenuItem("Estudiante");
+			mntmEstudiante.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		}
 		return mntmEstudiante;
 	}
 	private JMenuItem getMntmProfesor() {
 		if (mntmProfesor == null) {
 			mntmProfesor = new JMenuItem("Trabajador");
+			mntmProfesor.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		}
 		return mntmProfesor;
 	}
@@ -560,5 +333,18 @@ public class Principal extends JFrame {
 			mntmEventoMasValorado.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		}
 		return mntmEventoMasValorado;
+	}
+	private JMenuItem getMntmSalir() {
+		if (mntmSalir == null) {
+			mntmSalir = new JMenuItem("Salir");
+			mntmSalir.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					dispose();
+				}
+			});
+			mntmSalir.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			mntmSalir.setForeground(Colores.getVerde());
+		}
+		return mntmSalir;
 	}
 }

@@ -9,16 +9,16 @@ import javax.swing.JPasswordField;
 
 import GUI.Colores;
 
-public class ContraseñaPlaceHolder extends JPasswordField{
+public class ContrasenaPlaceHolder extends JPasswordField{
 	
 private String ph;
 	
-	public ContraseñaPlaceHolder(String ph)
+	public ContrasenaPlaceHolder(String ph)
 	{
 		this.ph=ph;
 	}
 	
-	public ContraseñaPlaceHolder()
+	public ContrasenaPlaceHolder()
 	{
 		this.ph=null;
 	}

@@ -2,6 +2,7 @@ package inicio;
 
 import java.awt.EventQueue;
 
+import logica.Universidad;
 import GUI.Primera;
 
 public class Iniciadora {

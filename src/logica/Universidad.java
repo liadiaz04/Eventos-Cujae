@@ -6,18 +6,49 @@ import java.util.Date;
 import utilidades.EventoOpinionesRango;
 
 public class Universidad {
-	private Universidad cujae;
+	public static Universidad cujae;
 	private ArrayList<User> usuarios;
 	private ArrayList<Evento> eventos;
+	private ArrayList<String> tipos;
+	private ArrayList<Lugar> lugares;
+	
 	private Universidad(){
-		
+		usuarios = new ArrayList<User>();
+		eventos = new ArrayList<Evento>();
+		tipos= new ArrayList<String>();
+		lugares = new ArrayList<Lugar>();
 	}
 	
-	public Universidad getUniversidad(){
+	public static Universidad getUniversidad(){
 		if(cujae==null){
-			this.cujae= new Universidad();
+			cujae= new Universidad();
 		}
 		return cujae;
+	}
+	
+	public void addTipo(String tipo){
+		tipos.add(tipo);
+	}
+	
+	public void addLugar(String nombre,String coordenada){
+		Lugar l = new Lugar(nombre, coordenada);
+		lugares.add(l);
+	}
+	
+	public User buscarUserPorUserName(String username, String contrasena){
+		User usuario=null;
+		boolean found = false;
+		
+		for(int i=0;i<usuarios.size() && !found ;i++)
+		{
+			if(usuarios.get(i).getUsername().equals(username) && usuarios.get(i).getContrasena().equals(contrasena))
+			{
+				found=true;
+				usuario=usuarios.get(i);
+			}
+		}
+		
+		return usuario;
 	}
 	
 	/*Filtrados de tablas*/
