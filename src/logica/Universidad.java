@@ -11,12 +11,15 @@ public class Universidad {
 	private ArrayList<Evento> eventos;
 	private ArrayList<String> tipos;
 	private ArrayList<Lugar> lugares;
-	
+	private ArrayList<String> orgs;
+	private static final String[] facultades = {"Automatica y Biomedica", "Civil", "Electrica", "Industrial", "Informatica", "Mecanica", "Telecomunicaciones", "Quimica"}; 
+
 	private Universidad(){
 		usuarios = new ArrayList<User>();
 		eventos = new ArrayList<Evento>();
 		tipos= new ArrayList<String>();
 		lugares = new ArrayList<Lugar>();
+		orgs= new ArrayList<String>();
 	}
 	
 	public static Universidad getUniversidad(){
@@ -30,11 +33,46 @@ public class Universidad {
 		tipos.add(tipo);
 	}
 	
-	public void addLugar(String nombre,String coordenada){
-		Lugar l = new Lugar(nombre, coordenada);
+	public void addLugar(Lugar l){
 		lugares.add(l);
 	}
 	
+	public void addOrg(String org)
+	{
+		orgs.add(org);
+	}
+	
+	public void addEventoSimple(EventoSimple e)
+	{
+		eventos.add(e);
+	}
+	
+	public void addEventoSimpleConParticipantes(EventoSConParticipantes e)
+	{
+		eventos.add(e);
+	}
+	
+	public void addEventoCompuesto(EventoCompuesto e)
+	{
+		eventos.add(e);
+	}
+	
+	public ArrayList<String> getTipos() {
+		return tipos;
+	}
+
+	public void setTipos(ArrayList<String> tipos) {
+		this.tipos = tipos;
+	}
+
+	public ArrayList<Lugar> getLugares() {
+		return lugares;
+	}
+
+	public void setLugares(ArrayList<Lugar> lugares) {
+		this.lugares = lugares;
+	}
+
 	public User buscarUserPorUserName(String username, String contrasena){
 		User usuario=null;
 		boolean found = false;
@@ -51,8 +89,45 @@ public class Universidad {
 		return usuario;
 	}
 	
-	/*Filtrados de tablas*/
 	
+	//Buscar evento por identificador
+	
+	public Evento buscarEvento(String id){
+		
+		Evento e=null;
+		boolean found = false;
+		
+		for(int i=0; i<Universidad.getUniversidad().getEventos().size() && !found;i++)
+		{
+			if(Universidad.getUniversidad().getEventos().get(i).getId().equals(id))
+			{
+				e=Universidad.getUniversidad().getEventos().get(i);
+			}
+		}
+		
+		return e;
+	}
+	
+	//Buscar Lugar
+	
+	public Lugar buscarLugar(String nombre){
+		
+		Lugar l=null;
+		boolean found = false;
+		
+		for(int i=0; i<Universidad.getUniversidad().getLugares().size() && !found;i++)
+		{
+			if(Universidad.getUniversidad().getLugares().get(i).getNombre().equals(nombre))
+			{
+				l=Universidad.getUniversidad().getLugares().get(i);
+			}
+		}
+		
+		return l;
+	}
+	
+	/*Filtrados de tablas*/
+	//eventos
 	public ArrayList<Evento> eventosPorOrganizador(String organizador){
 		
 		ArrayList<Evento> eventos= new ArrayList<Evento>();
@@ -83,6 +158,21 @@ public class Universidad {
 		return eventos;
 	}
 	
+	public ArrayList<Evento> eventosPorLugar(Lugar lugar){
+		
+		ArrayList<Evento> eventos= new ArrayList<Evento>();
+		
+		for(Evento e : eventos)
+		{
+			if(e.getLugar().equals(lugar))
+			{
+				eventos.add(e);
+			}
+		}
+		
+		return eventos;
+	}
+	//usuarios
 	public ArrayList<User> usersEstudiantes(){
 		
 		ArrayList<User> users = new ArrayList<User>();
@@ -139,6 +229,21 @@ public class Universidad {
 		}
 		
 		return users;
+	}
+	
+	public ArrayList<Evento> eventosPorClase(String clase){
+		
+		ArrayList<Evento> eventos = new ArrayList<Evento>();
+		
+		for(Evento e : Universidad.getUniversidad().getEventos())
+		{
+			if(e.getClass().getSimpleName().equals(clase))
+			{
+				eventos.add(e);
+			}
+		}
+		
+		return eventos;
 	}
 	
 	//Fin de los filtrados
@@ -202,7 +307,17 @@ public class Universidad {
 	public void setEventos(ArrayList<Evento> eventos) {
 		this.eventos = eventos;
 	}
+
+	public ArrayList<String> getOrgs() {
+		return orgs;
+	}
+
+	public void setOrgs(ArrayList<String> orgs) {
+		this.orgs = orgs;
+	}
 	
-	
+	public static String[] getFacultades() {
+		return facultades;
+	}
 	
 }

@@ -43,23 +43,18 @@ public class Principal extends JFrame {
 	private JMenuItem mntmNewMenuItem_1;
 	private JMenuItem mntmCerrarSesin;
 	private JMenu mnNewMenu;
-	private JMenu mnEliminar;
-	private JMenuItem mntmUsuario;
-	private JMenuItem mntmEvento;
 	private JMenu mnReportes;
 	private JMenuItem mntmReporte;
 	private JMenu mnAadirEvento;
 	private JMenuItem mntmEventoSimple;
 	private JMenuItem mntmEventoSimpleCon;
 	private JMenuItem mntmEventoCompuesto;
-	private JMenu mnAadirUsuario;
-	private JMenuItem mntmEstudiante;
-	private JMenuItem mntmProfesor;
 	private JMenuItem mntmUsuariosQue;
 	private JMenu mnReportesPorRango;
 	private JMenuItem mntmLugaresCon;
 	private JMenuItem mntmEventoMasValorado;
 	private JMenuItem mntmSalir;
+	private JMenuItem mntmEliminarevento;
 
 	/**
 	 * Launch the application.
@@ -181,6 +176,17 @@ public class Principal extends JFrame {
 	private JMenuItem getMntmNewMenuItem_1() {
 		if (mntmNewMenuItem_1 == null) {
 			mntmNewMenuItem_1 = new JMenuItem("Ver Eventos");
+			mntmNewMenuItem_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					try {
+						VerEventos dialog = new VerEventos(Principal.this);
+						dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+						dialog.setVisible(true);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+				}
+			});
 			mntmNewMenuItem_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			mntmNewMenuItem_1.setBackground(Colores.getAzulbarra());
 			mntmNewMenuItem_1.setForeground(Colores.getVerde());
@@ -203,33 +209,9 @@ public class Principal extends JFrame {
 			mnNewMenu.setFont(new Font("Tahoma", Font.PLAIN, 23));
 			mnNewMenu.setForeground(Colores.getVerde());
 			mnNewMenu.add(getMnAadirEvento());
-			mnNewMenu.add(getMnAadirUsuario());
-			mnNewMenu.add(getMnEliminar());
+			mnNewMenu.add(getMntmEliminarevento());
 		}
 		return mnNewMenu;
-	}
-	private JMenu getMnEliminar() {
-		if (mnEliminar == null) {
-			mnEliminar = new JMenu("Eliminar");
-			mnEliminar.setFont(new Font("Tahoma", Font.PLAIN, 20));
-			mnEliminar.add(getMntmUsuario());
-			mnEliminar.add(getMntmEvento());
-		}
-		return mnEliminar;
-	}
-	private JMenuItem getMntmUsuario() {
-		if (mntmUsuario == null) {
-			mntmUsuario = new JMenuItem("Usuario");
-			mntmUsuario.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		}
-		return mntmUsuario;
-	}
-	private JMenuItem getMntmEvento() {
-		if (mntmEvento == null) {
-			mntmEvento = new JMenuItem("Evento");
-			mntmEvento.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		}
-		return mntmEvento;
 	}
 	private JMenu getMnReportes() {
 		if (mnReportes == null) {
@@ -263,6 +245,17 @@ public class Principal extends JFrame {
 	private JMenuItem getMntmEventoSimple() {
 		if (mntmEventoSimple == null) {
 			mntmEventoSimple = new JMenuItem("Evento Simple");
+			mntmEventoSimple.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					try {
+						EventoSimpleMaker dialog = new EventoSimpleMaker(Principal.this);
+						dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+						dialog.setVisible(true);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+				}
+			});
 			mntmEventoSimple.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		}
 		return mntmEventoSimple;
@@ -280,29 +273,6 @@ public class Principal extends JFrame {
 			mntmEventoCompuesto.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		}
 		return mntmEventoCompuesto;
-	}
-	private JMenu getMnAadirUsuario() {
-		if (mnAadirUsuario == null) {
-			mnAadirUsuario = new JMenu("A\u00F1adir Usuario");
-			mnAadirUsuario.setFont(new Font("Tahoma", Font.PLAIN, 20));
-			mnAadirUsuario.add(getMntmEstudiante());
-			mnAadirUsuario.add(getMntmProfesor());
-		}
-		return mnAadirUsuario;
-	}
-	private JMenuItem getMntmEstudiante() {
-		if (mntmEstudiante == null) {
-			mntmEstudiante = new JMenuItem("Estudiante");
-			mntmEstudiante.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		}
-		return mntmEstudiante;
-	}
-	private JMenuItem getMntmProfesor() {
-		if (mntmProfesor == null) {
-			mntmProfesor = new JMenuItem("Trabajador");
-			mntmProfesor.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		}
-		return mntmProfesor;
 	}
 	private JMenuItem getMntmUsuariosQue() {
 		if (mntmUsuariosQue == null) {
@@ -346,5 +316,12 @@ public class Principal extends JFrame {
 			mntmSalir.setForeground(Colores.getVerde());
 		}
 		return mntmSalir;
+	}
+	private JMenuItem getMntmEliminarevento() {
+		if (mntmEliminarevento == null) {
+			mntmEliminarevento = new JMenuItem("Eliminar Evento");
+			mntmEliminarevento.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return mntmEliminarevento;
 	}
 }

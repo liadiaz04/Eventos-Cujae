@@ -112,7 +112,7 @@ public class Primera extends JFrame {
 	}
 	private JPasswordField getCampoContrasena() {
 		if (campoContrasena == null) {
-			campoContrasena = new ContrasenaPlaceHolder("Contrase�a");
+			campoContrasena = new ContrasenaPlaceHolder("Clave");
 			campoContrasena.setBounds(146, 309, 209, 33);
 			campoContrasena.setFont(new Font("Tahoma", Font.BOLD, 16));
 			campoContrasena.setBackground(Colores.getAzulbarra());

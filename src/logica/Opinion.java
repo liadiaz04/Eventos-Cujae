@@ -14,6 +14,15 @@ public class Opinion {
 		fecha = new Date();
 	}
 	
+	//La saobrecarga de constructores no es funcional en toda la aplicación
+	//sino solamente para instanciar los datos con los que funcionará la aplicación inicialmente
+	
+	public Opinion(int cantEstrellas, Date fecha, String texto){
+		this.setCantEstrellas(cantEstrellas);
+		this.setTexto(texto);
+		this.setFecha(fecha);
+	}
+	
 	public int getCantEstrellas() {
 		return cantEstrellas;
 	}
@@ -25,6 +34,10 @@ public class Opinion {
 	}
 	public void setTexto(String texto) {
 		this.texto = texto;
+	}
+	
+	public void setFecha(Date fecha){
+		this.fecha=fecha;
 	}
 
 	public Date getFecha() {

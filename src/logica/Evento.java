@@ -4,29 +4,39 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
 
+import utilidades.Identificadores;
+
 public abstract class Evento {
+	
+	private String id;
 	private String nombre;
 	private String tipo;
+	private String descripcion;
 	private String organizador;
 	private Date fechaInicial;
 	private Date fechaFinal;
-	private Time horaInicial;
-	private Time horaFinal;
 	private ArrayList<Opinion> opiniones;
+	private Lugar lugar;
 	
-	public Evento(String nombre, String tipo, String organizador, Date fechaInicial, Date fechaFinal, Time horaInicial, Time horaFinal){
+	public Evento(String id, String nombre, String tipo, String descripcion, String organizador, Date fechaInicial, Date fechaFinal, Lugar lugar){
+		this.setId(id);
 		this.setNombre(nombre);
 		this.setTipo(tipo);
+		this.setDescripcion(descripcion);
 		this.setOrganizador(organizador);
 		this.setFechaInicial(fechaInicial);
 		this.setFechaFinal(fechaFinal);
-		this.setHoraInicial(horaInicial);
-		this.setHoraFinal(horaFinal);
+		this.setLugar(lugar);
 		opiniones = new ArrayList<Opinion>();
 		}
 	
 	public void addOpinion(int estrellas, String texto){
 		Opinion o = new Opinion(estrellas, texto);
+		opiniones.add(o);
+	}
+	
+	public void addOpinion(int estrellas, Date date, String texto){
+		Opinion o = new Opinion(estrellas, date, texto);
 		opiniones.add(o);
 	}
 	
@@ -74,19 +84,28 @@ public abstract class Evento {
 		this.fechaFinal = fechaFinal;
 	}
 
-	public Time getHoraInicial() {
-		return horaInicial;
+	public String getId() {
+		return id;
 	}
 
-	public void setHoraInicial(Time horaInicial) {
-		this.horaInicial = horaInicial;
+	private void setId(String id) {
+		
+		this.id=id;
 	}
 
-	public Time getHoraFinal() {
-		return horaFinal;
+	public Lugar getLugar() {
+		return lugar;
 	}
 
-	public void setHoraFinal(Time horaFinal) {
-		this.horaFinal = horaFinal;
+	public void setLugar(Lugar lugar) {
+		this.lugar = lugar;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 }
